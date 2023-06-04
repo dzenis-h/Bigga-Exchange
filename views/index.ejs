@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/public/style.css"  />
+  <link rel="icon" href="/public/favicon.ico">
+
+  <title>Bigga Exchange</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 m-auto">
+        <div class="header my-3">
+            <img class="img-thumbnail mr-3" src="public/bigga_logo.png" />
+            <h1 class=" text-info display-4">Bigga Exchange</h1>
+            <!-- <div> -->
+              <small class="">Simple 2 Way Data Transfer. <span class="text-primary">UPLOAD</span> various types of files and 
+            <!-- </div> -->
+          <span class="text-success">DOWNLOAD</span> is a click away.</small>
+        </div>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <div class="custom-file mb-3">
+            <input type="file" name="file" id="fileInput" class="custom-file-input">
+            <label for="fileInput" class="custom-file-label"><span class="text-info font-italic">Choose your file</span></label>
+          </div>
+          <input type="submit" value="Submit" id="submitButton" class="btn btn-info btn-block submit-btn" disabled>
+        </form>
+        <hr>
+        <% if(files){ %>
+          <% files.forEach(function(file) { %>
+            <div class="card card-body mb-3">
+              <% if(file.isImage) { %>
+                <a href="file/<%= file.filename %>" download>
+                <img class="img-thumbnail border-secondary mx-auto d-block" src="file/<%= file.filename %>" alt=""></a>
+
+                <% } else if(file.isAudio) { %>
+                  <audio style="width: 686px; height: 75px;" class="img-thumbnail border-0 mb-2 mx-auto" controls>
+                    <source src="file/<%= file.filename %>" type="audio/mp3">
+                    <source src="file/<%= file.filename %>" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                  </audio>
+
+                  <% } else if(file.isVideo) { %>
+
+                  <video width="686px" class="img-thumbnail border-secondary mb-2 mx-auto" controls>
+                      <source src="file/<%= file.filename %>" type="video/mp4">
+                      <source src="file/<%= file.filename %>" type="video/avi">
+                      Your browser does not support HTML5 video.
+                    </video>
+
+                    <% } else if(file.isText) { %>
+                          <iframe 
+                          class="img-thumbnail border-secondary mb-2 mx-auto"
+                          id="textFile"
+                          title="Text file preview"
+                          width="686"
+                          height="200"
+                          src="file/<%= file.filename %>">
+                          </iframe>
+
+                <% } else { %>
+                  
+                  <% } %>
+                  <div class="footer">
+                      <p class="lead font-italic" ><%= file.filename %></p>
+
+                      <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                        <button class="col-sm-5 float-left btn btn-outline-danger mb-2">Delete</button>
+                      </form>
+
+                        <a href="/files/<%= file.filename %>" class="col-sm-5 float-right btn btn-outline-success mb-2" download>Download</a>
+                      </div>
+            </div>
+            <% }) %>
+              <% } else { %>
+                <p class="lead text-muted text-center">No files to show at the moment. Please choose a file and click <span class="text-info">Submit</span></p>
+                <% } %>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // Custom script to display the fileName when it has been chosen
+    $("input[type=file]").change(function () {
+      var fieldVal = $(this).val();
+      // Change the node's value by removing the fake path (Chrome)
+      fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+      if (fieldVal != undefined || fieldVal != "") {
+        $(this).next(".custom-file-label").attr('data-content', fieldVal);
+        $(this).next(".custom-file-label").text(fieldVal);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const fileInput = document.getElementById('fileInput');
+      const submitButton = document.getElementById('submitButton');
+
+      fileInput.addEventListener('change', function () {
+        submitButton.disabled = fileInput.files.length === 0;
+      });
+    });
+  </script>
+</body>
+
+</html>

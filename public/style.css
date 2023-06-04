@@ -1,0 +1,113 @@
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.header small {
+  color: aliceblue;
+  display: block;
+}
+
+body {
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #434343, #000000); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.custom-file-label {
+  overflow: hidden;
+  font-weight: bolder;
+  color: darkred;
+}
+
+@media (max-width: 575.98px) {
+  .header h1 {
+    font-size: 0.1rem;
+    display: flex;
+  }
+  .header img {
+    width: 100px;
+    height: 101px;
+  }
+}
+
+@media (max-width: 1009.98px) {
+  .header img {
+    width: 100px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 405px) {
+  .header img {
+    width: 100px;
+    height: 165px;
+  }
+  .header small {
+    color: aliceblue;
+    display: block;
+  }
+}
+
+  /* #fileDisplayArea {
+    margin-top: 2em;
+    width: 100%;
+    overflow-x: auto;
+  } */
+
+  body {
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+  .custom-file-label {
+    overflow: hidden;
+    font-weight: bolder;
+    color: darkred;
+  }
+
+  @media (max-width: 575.98px) { 
+    .header h1 {
+        font-size: 0,1rem;
+        display: flex;
+    }
+    .header img {
+        width: 100px;
+        height: 125px;
+    }
+    small {
+      display: block;
+    }
+   }
+
+   @media (max-width: 1009.98px) {
+       .header img {
+        width: 100px;
+        height: 180px;
+    }
+   }
+
+    @media (max-width: 405px) {
+    .header img {
+     width: 100px;
+     height: 165px;
+ }
+ .header small {
+    font-size: 0,5rem;
+    display: inline-block;
+ }
+} 
+
+/* Add special mouse style when hovering over the submit button */
+.btn:hover {
+  cursor: pointer;
+  /* Add additional styling here if desired */
+}
+
+/* Add special mouse style for disabled button */
+.btn:disabled,
+.btn[disabled] {
+  cursor: not-allowed;
+}
