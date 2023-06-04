@@ -1,5 +1,5 @@
 ##
-# ![Bigga File Upload](https://raw.githubusercontent.com/dzenis-h/bigga_file_uploads/master/public/favicon.ico) Bigga File Upload
+# ![Bigga File Upload](https://raw.githubusercontent.com/dzenis-h/bigga_file_uploads/master/public/favicon.ico)  - Bigga Exchange
 
 ## Overview 🌄
 An easy-to-use app with a pretty UI that lets you upload all kinds of files to a remote MongoDB. The same files can easily be downloaded and deleted.
