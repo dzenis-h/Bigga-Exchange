@@ -5,13 +5,13 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const methodOverride = require("method-override");
-const mongoURI = require("./config/keys_dev");
+// const mongoURI = require("./config/keys_dev");
 
 const app = express();
 app.use("/public", express.static("public"));
 
 // Set-up en vars
-// const mongoURI = process.env.mongoURI
+const mongoURI = process.env.mongoURI
 
 // Middleware
 app.use(bodyParser.json());
